@@ -2,22 +2,28 @@ package br.com.dio.desafio.dominio;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Curso {
-    private String titulo;
-    private String descricao;
+@EqualsAndHashCode(callSuper = true)
+public class Curso extends Conteudo{
     private int cagaHoraria;
+
+    @Override
+    public double calcularXp() {
+        return XP_PADRAO * cagaHoraria;
+    }
 
     @Override
     public String toString() {
         return "Curso{" +
-                "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
+                "titulo='" + getTitulo() + '\'' +
+                ", descricao='" + getDescricao() + '\'' +
                 ", cagaHoraria=" + cagaHoraria +
                 '}';
     }
+
 }
